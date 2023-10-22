@@ -108,6 +108,7 @@ jobs:
         cd Weather_Checker
         ls -al
         git add docs/data.json
+        git add docs/current_datetime.txt
         git diff
         git config --global user.email "siook1239@gmail.com"
         git config --global user.name "maker-ryu"
