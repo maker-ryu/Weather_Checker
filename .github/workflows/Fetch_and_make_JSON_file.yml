@@ -15,11 +15,13 @@ jobs:
 
     steps:
     - name: repository checkout
-        uses: actions/checkout@v2
-        with:
-          # repository: maker-kiku/Weather_Checker
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          path: Weather_Checker
+      uses: actions/checkout@v2
+      with:
+        repository: maker-kiku/Weather_Checker
+        token: ${{ secrets.MY_GITHUB_TOKEN }}
+        path: Weather_Checker
+    # - name: Checkout 코드
+    #   uses: actions/checkout@v2
 
     # 23:11 23:59 00:01 00:10 02:10 02:11 03:00
     # 00시 <= & < 03시 : 23시 적용 15 18
