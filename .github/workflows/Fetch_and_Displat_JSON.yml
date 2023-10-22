@@ -94,13 +94,3 @@ jobs:
         git add docs/response.json
         git commit -m "Update JSON data"
         git push
-
-    # - name: Run Update README.md File
-    #   run: |
-    #     git add .
-    #     git diff
-    #     git config --local user.email "email"
-    #     git config --local user.name "name"
-    #     git commit -m ":smiley: Update README.md file"
-    #     git push
-
