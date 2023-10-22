@@ -2,8 +2,9 @@ name: Fetch and Display JSON
 
 on:
   push:
-    branches:
-      - main  # 필요에 따라 브랜치를 조정하세요.
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # on:
 #   schedule:
@@ -88,9 +89,18 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
+        git config --local user.email "email"
+        git config --local user.name "name"
         git add docs/response.json
         git commit -m "Update JSON data"
         git push
+
+    # - name: Run Update README.md File
+    #   run: |
+    #     git add .
+    #     git diff
+    #     git config --local user.email "email"
+    #     git config --local user.name "name"
+    #     git commit -m ":smiley: Update README.md file"
+    #     git push
 
