@@ -90,16 +90,18 @@ jobs:
         mkdir -p Weather_Checker/docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json Weather_Checker/docs/data.json
-        echo "$(date +'%Y%m%d%H%M%S')" > Weather_Checker/docs/date.txt
+        current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "$current_datetime" > Weather_Checker/docs/current_datetime.txt
         echo "JSON file generated and saved to Weather_Checker/docs directory."
     
-    # - name: 디렉토리 JSON파일 확인
-    #   run: |
-    #     cd Weather_Checker
-    #     ls -al
-    #     cd docs
-    #     ls -al
-    #     cat data.json
+    - name: 디렉토리 JSON파일 확인
+      run: |
+        cd Weather_Checker
+        ls -al
+        cd docs
+        ls -al
+        cat data.json
+        cat current_datetime.txt
 
     - name: Commit and Push Changes
       run: |
