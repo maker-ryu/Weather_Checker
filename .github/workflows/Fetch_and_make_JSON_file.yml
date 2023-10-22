@@ -1,13 +1,13 @@
 name: Fetch and make JSON file
 
-on:
-  push:
-    branches:
-      - main  # 필요에 따라 브랜치를 조정하세요.
-    
 # on:
-#   schedule:
-#     - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
+#   push:
+#     branches:
+#       - main  # 필요에 따라 브랜치를 조정하세요.
+    
+on:
+  schedule:
+    - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
 
 jobs:
   build:
@@ -90,6 +90,7 @@ jobs:
         mkdir -p Weather_Checker/docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json Weather_Checker/docs/data.json
+        echo "$(date +'%Y%m%d%H%M%S')" > Weather_Checker/docs/date.txt
         echo "JSON file generated and saved to Weather_Checker/docs directory."
     
     # - name: 디렉토리 JSON파일 확인
@@ -106,10 +107,8 @@ jobs:
         ls -al
         git add docs/data.json
         git diff
-        # git config --global user.email "siook1239@gmail.com"
-        # git config --global user.name "maker-ryu"
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
+        git config --global user.email "siook1239@gmail.com"
+        git config --global user.name "maker-ryu"
         git commit -m "Update JSON data"
         git push
 
