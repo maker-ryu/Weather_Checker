@@ -88,11 +88,10 @@ jobs:
         # cat response.json
         # 디렉토리 생성 또는 이미 존재하면 스킵
         ls -al
-        cd Weather_Checker
-        ls -al
-        mkdir -p docs
+        mkdir -p Weather_Checker/docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
-        mv response.json docs/data.json
+        mv response.json Weather_Checker/docs/data.json
+        ls -al
         echo "JSON file generated and saved to docs directory."
     
     - name: 디렉토리 JSON파일 확인
