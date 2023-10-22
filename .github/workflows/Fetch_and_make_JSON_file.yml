@@ -92,6 +92,14 @@ jobs:
         mv response.json docs/response.json
         echo "JSON file generated and saved to docs directory."
 
+    - name: Add date and push
+      run: |
+        git add docs/response.json
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "github-actions"
+        git commit -m "Update JSON data"
+        git push
+
     # - name: Commit and Push Changes
     #   run: |
     #     git config --global user.email "actions@github.com"
@@ -114,12 +122,12 @@ jobs:
     #   with:
     #     github_token: ${{ secrets.TOKEN }}
 
-    - name: Add date and push
-      run: |
-        cd Weather_Checker
-        response.json >> response.json
-        git add .
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
-        git commit -m "Update JSON data"
-        git push
+    # - name: Add date and push
+    #   run: |
+    #     cd Weather_Checker
+    #     response.json >> response.json
+    #     git add .
+    #     git config --global user.email "github-actions@github.com"
+    #     git config --global user.name "github-actions"
+    #     git commit -m "Update JSON data"
+    #     git push
