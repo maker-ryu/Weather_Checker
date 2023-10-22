@@ -21,21 +21,21 @@ jobs:
       run: |
         now_hour=$(date +'%H')
         if [ $now_hour -ge 15 ] && [ $now_hour -lt 18 ]; then
-          "base_time=2300" >> $GITHUB_ENV
+          echo "base_time=2300" >> $GITHUB_ENV
         elif [ $now_hour -ge 18 ] && [ $now_hour -lt 21 ]; then
-          "base_time=0200" >> $GITHUB_ENV
+          echo "base_time=0200" >> $GITHUB_ENV
         elif [ $now_hour -ge 21 ] && [ $now_hour -lt 0 ]; then
-          "base_time=0500" >> $GITHUB_ENV
+          echo "base_time=0500" >> $GITHUB_ENV
         elif [ $now_hour -ge 0 ] && [ $now_hour -lt 3 ]; then
-          "base_time=0800" >> $GITHUB_ENV
+          echo "base_time=0800" >> $GITHUB_ENV
         elif [ $now_hour -ge 3 ] && [ $now_hour -lt 6 ]; then
-          "base_time=1100" >> $GITHUB_ENV
+          echo "base_time=1100" >> $GITHUB_ENV
         elif [ $now_hour -ge 6 ] && [ $now_hour -lt 9 ]; then
-          "base_time=1400" >> $GITHUB_ENV
+          echo "base_time=1400" >> $GITHUB_ENV
         elif [ $now_hour -ge 9 ] && [ $now_hour -lt 12 ]; then
-          "base_time=1700" >> $GITHUB_ENV
+          echo "base_time=1700" >> $GITHUB_ENV
         elif [ $now_hour -ge 12 ] && [ $now_hour -lt 15 ]; then
-          "base_time=2000" >> $GITHUB_ENV
+          echo "base_time=2000" >> $GITHUB_ENV
         else
           echo "No parameters specified for the current time ($now_hour)"
           exit 1
