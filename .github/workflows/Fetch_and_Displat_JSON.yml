@@ -1,9 +1,13 @@
 name: Fetch and Display JSON
 
+# on:
+#   push:
+#     branches:
+#       - main  # 필요에 따라 브랜치를 조정하세요.
+
 on:
-  push:
-    branches:
-      - main  # 필요에 따라 브랜치를 조정하세요.
+  schedule:
+    - cron: '*/1 * * * *' # 매 1분마다 실행
 
 jobs:
   build:
@@ -43,13 +47,13 @@ jobs:
           echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 12 ] && [ $now_hour -lt 15 ]; then
           echo "base_time=2000" >> $GITHUB_ENV
-          echo "base_date=$(date -d "yesterday" +'%Y%m%d')" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         else
           echo "No parameters specified for the current time ($now_hour)"
           exit 1
         fi
 
-    - name: Parameters 설정
+    - name: 이외의 Parameters 설정
       id: parameters
       run: |
         echo "numOfRows=144" >> $GITHUB_ENV
