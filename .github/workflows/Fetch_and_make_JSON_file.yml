@@ -14,8 +14,12 @@ jobs:
     runs-on: ubuntu-latest 
 
     steps:
-    - name: Checkout 코드
-      uses: actions/checkout@v2
+    - name: repository checkout
+        uses: actions/checkout@v2
+        with:
+          repository: maker-kiku/Weather_Checker
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          path: Weather_Checker
 
     # 23:11 23:59 00:01 00:10 02:10 02:11 03:00
     # 00시 <= & < 03시 : 23시 적용 15 18
@@ -109,18 +113,11 @@ jobs:
     #   with:
     #     github_token: ${{ secrets.TOKEN }}
 
-    - name: repository checkout
-        uses: actions/checkout@v2
-        with:
-          repository: maker-kiku/Weather_Checker
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
-          path: Weather_Checker
-
-      - name: Add date and push
-        run: |
-          cd Weather_Checker
-          git add docs/response.json
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "github-actions"
-          git commit -am "Update JSON data"
-          git push
+    - name: Add date and push
+      run: |
+        cd Weather_Checker
+        git add docs/response.json
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "github-actions"
+        git commit -am "Update JSON data"
+        git push
