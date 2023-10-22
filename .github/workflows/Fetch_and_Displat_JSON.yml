@@ -3,7 +3,7 @@ name: Fetch and Display JSON
 on:
   push:
     branches:
-      - main  # 필요에 따라 브랜치를 조정하세요.
+      - maker-kiku  # 필요에 따라 브랜치를 조정하세요.
     
 # on:
 #   schedule:
