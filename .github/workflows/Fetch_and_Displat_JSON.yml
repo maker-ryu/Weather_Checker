@@ -89,8 +89,8 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git config --local user.email "email"
-        git config --local user.name "name"
+        git config --local user.email "siook1239@gmail.com"
+        git config --local user.name "maker-kiku"
         git add docs/response.json
         git commit -m "Update JSON data"
         git push
