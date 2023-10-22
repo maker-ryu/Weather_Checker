@@ -37,8 +37,10 @@ jobs:
         PARAM7: ${{ env.ny }}
       run: |
         # 시크릿 값과 환경 변수로 설정된 파라미터를 사용하여 URL에서 JSON 데이터를 가져오고 출력 파일에 저장
-        # 던저야 하는 url : http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=                     &numOfRows=144    &dataType=JSON   &pageNo=1      &base_date=20231022&base_time=1700  &nx=61     &ny=126
-        curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=OPEN_API_KEY&numOfRows=$PARAM1&dataType=$PARAM2&pageNo=$PARAM3&base_date=$PARAM4&base_time=$PARAM5&nx=$PARAM6&ny=$PARAM7"
+        # 던저야 하는 url : http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=C62uZ9l4K3IYgXl9YPWVgQE1Z1nvPu9EPZzRB0j3UxoAFFUSp7VWSOX5UHBbOgWm0zTEaBQSF1sQu6QloXWJ3g%3D%3D&numOfRows=144&dataType=JSON&pageNo=1&base_date=20231022&base_time=1700&nx=61&ny=126
+        # curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=OPEN_API_KEY&numOfRows=$PARAM1&dataType=$PARAM2&pageNo=$PARAM3&base_date=$PARAM4&base_time=$PARAM5&nx=$PARAM6&ny=$PARAM7"
+        curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=C62uZ9l4K3IYgXl9YPWVgQE1Z1nvPu9EPZzRB0j3UxoAFFUSp7VWSOX5UHBbOgWm0zTEaBQSF1sQu6QloXWJ3g%3D%3D&numOfRows=144&dataType=JSON&pageNo=1&base_date=20231022&base_time=1700&nx=61&ny=126"
+        # curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=C62uZ9l4K3IYgXl9YPWVgQE1Z1nvPu9EPZzRB0j3UxoAFFUSp7VWSOX5UHBbOgWm0zTEaBQSF1sQu6QloXWJ3g%3D%3D&numOfRows=144&dataType=JSON&pageNo=1&base_date=20231022&base_time=1700&nx=61&ny=126"
 
     - name: Display JSON Response
       run: |
