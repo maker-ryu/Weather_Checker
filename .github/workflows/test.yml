@@ -16,8 +16,6 @@ jobs:
     - name: 요청 및 JSON 파일 저장
       run: |
         curl -s -o response.json ${{ secrets.OPEN_API_KEY }}
-      env:
-        YOUR_API_URL: ${{ secrets.OPEN_API_KEY }}  # GitHub Secrets에 API URL을 저장한 경우
 
     - name: 응답 JSON파일 출력
       run: |
