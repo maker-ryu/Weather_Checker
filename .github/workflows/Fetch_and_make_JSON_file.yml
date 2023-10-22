@@ -99,14 +99,13 @@ jobs:
         ls -al
         cat data.json
 
-    # - name: Add date and push
-    #   run: |
-    #     git add .
-    #     git diff
-    #     git config --global user.email "github-actions@github.com"
-    #     git config --global user.name "github-actions"
-    #     git commit -m "Update JSON data"
-    #     git push
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "github-actions"
+        git add .
+        git commit -m "Update JSON data"
+        git push
 
     # - name: Commit and Push Changes
     #   run: |
