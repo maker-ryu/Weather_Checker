@@ -87,8 +87,8 @@ jobs:
         # JSON 파일 내용을 표시
         cat response.json
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
-        cd Weather_Checker/docs
-        response.json >> response.json
+        cd Weather_Checker
+        mv response.json docs/response.json
 
     # - name: Commit and Push Changes
     #   run: |
