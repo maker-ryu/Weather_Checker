@@ -89,7 +89,8 @@ jobs:
         # 디렉토리 생성 또는 이미 존재하면 스킵
         mkdir -p docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
-        mv response.json docs/data.json
+        # mv response.json docs/data.json
+        response.json > docs/data.json
         echo "JSON file generated and saved to docs directory."
     
     - name: 디렉토리 JSON파일 확인
