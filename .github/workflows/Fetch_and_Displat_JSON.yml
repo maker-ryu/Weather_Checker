@@ -20,6 +20,7 @@ jobs:
     - name: base_time 파라미터 설정 # '0200', '0500', '0800', '1100', '1400', '1700', '2000', '2300'
       run: |
         now_hour=$(date +'%H')
+        echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
         if [ $now_hour -ge 15 ] && [ $now_hour -lt 18 ]; then
           echo "base_time=2300" >> $GITHUB_ENV
         elif [ $now_hour -ge 18 ] && [ $now_hour -lt 21 ]; then
