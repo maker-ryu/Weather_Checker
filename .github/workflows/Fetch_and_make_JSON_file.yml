@@ -90,7 +90,7 @@ jobs:
         mkdir -p docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json docs/response.json
-        echo ls -al
+        ls -al
         echo "JSON file generated and saved to docs directory."
 
     # - name: Add date and push
