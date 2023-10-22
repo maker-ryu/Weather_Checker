@@ -117,8 +117,8 @@ jobs:
     - name: Add date and push
       run: |
         cd Weather_Checker
-        git add .
         response.json >> response.json
+        git add .
         git config --global user.email "github-actions@github.com"
         git config --global user.name "github-actions"
         git commit -m "Update JSON data"
