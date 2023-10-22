@@ -12,12 +12,35 @@ jobs:
     steps:
     - name: Checkout 코드
       uses: actions/checkout@v2
-
-    - name: 요청 및 JSON 파일 저장
+  
+    - name: Parameters 설정
+      id: parameters
       run: |
-        curl -s -o response.json ${{ secrets.OPEN_API_KEY }}
+        # 파라미터를 환경 변수로 설정
+        echo "numOfRows=144" >> $GITHUB_ENV
+        echo "dataType=JSON" >> $GITHUB_ENV
+        echo "pageNo=1" >> $GITHUB_ENV
+        echo "base_date=20231022" >> $GITHUB_ENV
+        echo "base_time=1700" >> $GITHUB_ENV
+        echo "nx=61" >> $GITHUB_ENV
+        echo "ny=126" >> $GITHUB_ENV
 
-    - name: 응답 JSON파일 출력
+    - name: Fetch JSON from URL
+      env:
+        SECRET_API_KEY: ${{ secrets.OPEN_API_KEY }}
+        PARAM1: ${{ env.numOfRows }}
+        PARAM2: ${{ env.dataType }}
+        PARAM2: ${{ env.pageNo }}
+        PARAM2: ${{ env.base_date }}
+        PARAM2: ${{ env.base_time }}
+        PARAM2: ${{ env.nx }}
+        PARAM2: ${{ env.ny }}
+      run: |
+        # 시크릿 값과 환경 변수로 설정된 파라미터를 사용하여 URL에서 JSON 데이터를 가져오고 출력 파일에 저장
+        curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=OPEN_API_KEY&numOfRows=$numOfRows&dataType=$dataType&pageNo=$pageNo&base_date=$base_date&base_time=$base_time&nx=$nx&ny=$ny"
+
+    - name: Display JSON Response
       run: |
         # JSON 파일 내용을 표시
         cat response.json
+
