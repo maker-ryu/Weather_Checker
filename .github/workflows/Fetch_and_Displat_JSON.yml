@@ -22,7 +22,7 @@ jobs:
         now_hour=$(date +'%H')
         if [ $now_hour -ge 15 ] && [ $now_hour -lt 18 ]; then
           echo "base_time=2300" >> $GITHUB_ENV
-          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
+          echo "base_date=$(date -d "yesterday" +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 18 ] && [ $now_hour -lt 21 ]; then
           echo "base_time=0200" >> $GITHUB_ENV
           echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
@@ -43,9 +43,7 @@ jobs:
           echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 12 ] && [ $now_hour -lt 15 ]; then
           echo "base_time=2000" >> $GITHUB_ENV
-          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
-          YESTERDAY=$(date -d "yesterday" +'%Y-%m-%d')
-          echo "Yesterday's Date: $YESTERDAY"
+          echo "base_date=$(date -d "yesterday" +'%Y%m%d')" >> $GITHUB_ENV
         else
           echo "No parameters specified for the current time ($now_hour)"
           exit 1
