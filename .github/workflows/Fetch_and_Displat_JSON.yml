@@ -87,10 +87,11 @@ jobs:
         mv response.json docs/response.json
         echo "JSON file generated and saved to docs directory."
 
-    - name: Commit and Push Changes
+    - name: Run Update response.json File
       run: |
+        git add .
+        git diff
         git config --local user.email "siook1239@gmail.com"
         git config --local user.name "maker-ryu"
-        git add docs/response.json
         git commit -m "Update JSON data"
         git push
