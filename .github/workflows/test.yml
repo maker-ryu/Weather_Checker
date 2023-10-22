@@ -27,7 +27,7 @@ jobs:
 
     - name: Fetch JSON from URL
       env:
-        SECRET_API_KEY: ${{ secrets.OPEN_API_KEY }}
+        OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
         PARAM1: ${{ env.numOfRows }}
         PARAM2: ${{ env.dataType }}
         PARAM3: ${{ env.pageNo }}
