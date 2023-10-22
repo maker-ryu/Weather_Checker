@@ -103,9 +103,9 @@ jobs:
       run: |
         git config --global user.email "siook1239@gmail.com"
         git config --global user.name "maker-ryu"
-        cd ..
+        cd Weather_Checker
         ls -al
-        git add .
+        git add docs/data.json
         git commit -m "Update JSON data"
         git push
 
