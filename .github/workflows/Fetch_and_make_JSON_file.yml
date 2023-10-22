@@ -85,9 +85,11 @@ jobs:
     - name: JSON 파일 로컬에 저장
       run: |
         # JSON 파일 내용을 표시
-        cat response.json
+        # cat response.json
         # 디렉토리 생성 또는 이미 존재하면 스킵
+        ls -al
         cd Weather_Checker
+        ls -al
         mkdir -p docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json docs/data.json
@@ -95,6 +97,7 @@ jobs:
     
     - name: 디렉토리 JSON파일 확인
       run: |
+        cd Weather_Checker
         ls -al
         cd docs
         ls -al
