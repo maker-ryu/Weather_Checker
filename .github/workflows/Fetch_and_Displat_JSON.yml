@@ -7,7 +7,7 @@ name: Fetch and Display JSON
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # 매 5분마다 실행
+    - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
 
 jobs:
   build:
