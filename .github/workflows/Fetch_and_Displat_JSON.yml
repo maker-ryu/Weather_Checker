@@ -12,18 +12,41 @@ jobs:
     steps:
     - name: Checkout 코드
       uses: actions/checkout@v2
-  
+
     - name: Parameters 설정
       id: parameters
       run: |
-        # 파라미터를 환경 변수로 설정
         echo "numOfRows=144" >> $GITHUB_ENV
         echo "dataType=JSON" >> $GITHUB_ENV
         echo "pageNo=1" >> $GITHUB_ENV
         echo "base_date=20231022" >> $GITHUB_ENV
-        echo "base_time=1700" >> $GITHUB_ENV
+        # echo "base_time=1700" >> $GITHUB_ENV
         echo "nx=61" >> $GITHUB_ENV
         echo "ny=126" >> $GITHUB_ENV
+
+    - name: base_time env 설정
+      run: |
+        current_hour=$(date +'%H')
+        if [ $current_hour -eq 2 ]; then
+          base_time="1100" >> $GITHUB_ENV
+        elif [ $current_hour -eq 5 ]; then 
+          base_time="1400" >> $GITHUB_ENV
+        elif [ $current_hour -eq 8 ]; then
+          base_time="1700" >> $GITHUB_ENV
+        elif [ $current_hour -eq 11 ]; then
+          base_time="2000" >> $GITHUB_ENV
+        elif [ $current_hour -eq 14 ]; then
+          base_time="2300" >> $GITHUB_ENV
+        elif [ $current_hour -eq 17 ]; then
+          base_time="0200" >> $GITHUB_ENV
+        elif [ $current_hour -eq 20 ]; then
+          base_time="0500" >> $GITHUB_ENV
+        elif [ $current_hour -eq 23 ]; then
+          base_time="0800" >> $GITHUB_ENV
+        else
+          echo "No parameters specified for the current time ($current_hour)"
+          exit 1
+        fi
 
     - name: Fetch JSON from URL
       env:
