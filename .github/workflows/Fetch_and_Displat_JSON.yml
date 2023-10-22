@@ -1,13 +1,13 @@
 name: Fetch and Display JSON
 
-# on:
-#   push:
-#     branches:
-#       - main  # 필요에 따라 브랜치를 조정하세요.
-
 on:
-  schedule:
-    - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
+  push:
+    branches:
+      - main  # 필요에 따라 브랜치를 조정하세요.
+
+# on:
+#   schedule:
+#     - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
 
 jobs:
   build:
@@ -80,4 +80,15 @@ jobs:
       run: |
         # JSON 파일 내용을 표시
         cat response.json
+        # JSON 파일을 docs 디렉토리로 복사
+        cp response.json docs/response.json
+        echo "JSON file generated and saved to docs directory."
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add docs/response.json
+        git commit -m "Update JSON data"
+        git push
 
