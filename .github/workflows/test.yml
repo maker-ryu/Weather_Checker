@@ -19,24 +19,7 @@ jobs:
       env:
         YOUR_API_URL: ${{ secrets.API_URL }}  # GitHub Secrets에 API URL을 저장한 경우
 
-    - name: JSON을 HTML로 변환
+    - name: 응답 JSON파일 출력
       run: |
-        cat > response.html <<EOF
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>JSON to HTML</title>
-        </head>
-        <body>
-            <pre>
-                $(cat response.json | jq '.')
-            </pre>
-        </body>
-        </html>
-        EOF
-
-    - name: 결과물 업로드
-      uses: actions/upload-artifact@v2
-      with:
-        name: response-html
-        path: response.html
+        # JSON 파일 내용을 표시
+        cat response.json
