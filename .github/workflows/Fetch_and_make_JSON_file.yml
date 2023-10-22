@@ -85,28 +85,24 @@ jobs:
     - name: JSON 파일 로컬에 저장
       run: |
         # JSON 파일 내용을 표시
-        # cat response.json
+        cat response.json
         # 디렉토리 생성 또는 이미 존재하면 스킵
-        ls -al
         mkdir -p Weather_Checker/docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json Weather_Checker/docs/data.json
-        ls -al
-        echo "JSON file generated and saved to docs directory."
+        echo "JSON file generated and saved to Weather_Checker/docs directory."
     
-    - name: 디렉토리 JSON파일 확인
-      run: |
-        cd Weather_Checker
-        ls -al
-        cd docs
-        ls -al
-        cat data.json
+    # - name: 디렉토리 JSON파일 확인
+    #   run: |
+    #     cd Weather_Checker
+    #     ls -al
+    #     cd docs
+    #     ls -al
+    #     cat data.json
 
     - name: Commit and Push Changes
       run: |
-        cd Weather_Checker
-        ls -al
-        git add docs/data.json
+        git add Weather_Checker/docs/data.json
         git diff
         git config --global user.email "siook1239@gmail.com"
         git config --global user.name "maker-ryu"
