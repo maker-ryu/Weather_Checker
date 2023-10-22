@@ -1,9 +1,9 @@
-name: Fetch and Display JSON
+name: Fetch and make JSON file
 
 on:
   push:
     branches:
-      - maker-kiku  # 필요에 따라 브랜치를 조정하세요.
+      - main  # 필요에 따라 브랜치를 조정하세요.
     
 # on:
 #   schedule:
