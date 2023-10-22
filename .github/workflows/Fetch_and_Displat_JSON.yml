@@ -86,11 +86,16 @@ jobs:
         mv response.json docs/response.json
         echo "JSON file generated and saved to docs directory."
 
-    - name: Run Update response.json File
-      run: |
-        git add .
-        git diff
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
-        git commit -m "Update JSON data"
-        git push
+    # - name: Run Update response.json File
+    #   run: |
+    #     git add .
+    #     git diff
+    #     git config --global user.email "github-actions@github.com"
+    #     git config --global user.name "github-actions"
+    #     git commit -m "Update JSON data"
+    #     git push
+
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
