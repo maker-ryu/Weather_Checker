@@ -7,11 +7,39 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
     steps:
     - name: Checkout 코드
       uses: actions/checkout@v2
+
+    # 23:11 23:59 00:01 00:10 02:10 02:11 03:00
+    # 00시 <= & < 03시 : 23시 적용 15 18
+    # 03시 <= & < 06시 : 02시 적용
+    # ...
+    - name: base_time 파라미터 설정 # '0200', '0500', '0800', '1100', '1400', '1700', '2000', '2300'
+      run: |
+        now_hour=$(date +'%H')
+        if [ $now_hour -ge 15 ] && [ $now_hour -lt 18 ]; then
+          "base_time=2300" >> $GITHUB_ENV
+        elif [ $now_hour -ge 18 ] && [ $now_hour -lt 21 ]; then
+          "base_time=0200" >> $GITHUB_ENV
+        elif [ $now_hour -ge 21 ] && [ $now_hour -lt 0 ] then
+          "base_time=0500" >> $GITHUB_ENV
+        elif [ $now_hour -ge 0 ] && [ $now_hour -lt 3 ] then
+          "base_time=0800" >> $GITHUB_ENV
+        elif [ $now_hour -ge 3 ] && [ $now_hour -lt 6 ] then
+          "base_time=1100" >> $GITHUB_ENV
+        elif [ $now_hour -ge 6 ] && [ $now_hour -lt 9 ] then
+          "base_time=1400" >> $GITHUB_ENV
+        elif [ $now_hour -ge 9 ] && [ $now_hour -lt 12 ] then
+          "base_time=1700" >> $GITHUB_ENV
+        elif [ $now_hour -ge 12 ] && [ $now_hour -lt 15 ] then
+          "base_time=2000" >> $GITHUB_ENV
+        else
+          echo "No parameters specified for the current time ($now_hour)"
+          exit 1
+        fi
 
     - name: Parameters 설정
       id: parameters
@@ -20,33 +48,8 @@ jobs:
         echo "dataType=JSON" >> $GITHUB_ENV
         echo "pageNo=1" >> $GITHUB_ENV
         echo "base_date=20231022" >> $GITHUB_ENV
-        # echo "base_time=1700" >> $GITHUB_ENV
         echo "nx=61" >> $GITHUB_ENV
         echo "ny=126" >> $GITHUB_ENV
-
-    - name: base_time env 설정
-      run: |
-        current_hour=$(date +'%H')
-        if [ $current_hour -eq 2 ]; then
-          base_time="1100" >> $GITHUB_ENV
-        elif [ $current_hour -eq 5 ]; then 
-          base_time="1400" >> $GITHUB_ENV
-        elif [ $current_hour -eq 8 ]; then
-          base_time="1700" >> $GITHUB_ENV
-        elif [ $current_hour -eq 11 ]; then
-          base_time="2000" >> $GITHUB_ENV
-        elif [ $current_hour -eq 14 ]; then
-          base_time="2300" >> $GITHUB_ENV
-        elif [ $current_hour -eq 17 ]; then
-          base_time="0200" >> $GITHUB_ENV
-        elif [ $current_hour -eq 20 ]; then
-          base_time="0500" >> $GITHUB_ENV
-        elif [ $current_hour -eq 23 ]; then
-          base_time="0800" >> $GITHUB_ENV
-        else
-          echo "No parameters specified for the current time ($current_hour)"
-          exit 1
-        fi
 
     - name: Fetch JSON from URL
       env:
