@@ -1,13 +1,13 @@
 name: Fetch and make JSON file
 
-# on:
-#   push:
-#     branches:
-#       - main  # 필요에 따라 브랜치를 조정하세요.
-    
 on:
-  schedule:
-    - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
+  push:
+    branches:
+      - main  # 필요에 따라 브랜치를 조정하세요.
+    
+# on:
+#   schedule:
+#     - cron: '0 * * * *' # 매 시간 정각에 실행 (UTC 기준)
 
 jobs:
   build:
