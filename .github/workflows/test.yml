@@ -1,0 +1,42 @@
+name: Fetch and Display JSON
+
+on:
+  push:
+    branches:
+      - main  # 필요에 따라 브랜치를 조정하세요.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout 코드
+      uses: actions/checkout@v2
+
+    - name: 요청 및 JSON 파일 저장
+      run: |
+        curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=C62uZ9l4K3IYgXl9YPWVgQE1Z1nvPu9EPZzRB0j3UxoAFFUSp7VWSOX5UHBbOgWm0zTEaBQSF1sQu6QloXWJ3g%3D%3D&numOfRows=144&dataType=JSON&pageNo=1&base_date=20231022&base_time=1700&nx=61&ny=126"
+      env:
+        YOUR_API_URL: ${{ secrets.API_URL }}  # GitHub Secrets에 API URL을 저장한 경우
+
+    - name: JSON을 HTML로 변환
+      run: |
+        cat > response.html <<EOF
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>JSON to HTML</title>
+        </head>
+        <body>
+            <pre>
+                $(cat response.json | jq '.')
+            </pre>
+        </body>
+        </html>
+        EOF
+
+    - name: 결과물 업로드
+      uses: actions/upload-artifact@v2
+      with:
+        name: response-html
+        path: response.html
