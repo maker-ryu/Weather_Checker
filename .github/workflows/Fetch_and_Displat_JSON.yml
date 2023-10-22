@@ -20,25 +20,32 @@ jobs:
     - name: base_time, base_date 파라미터 설정 # '0200', '0500', '0800', '1100', '1400', '1700', '2000', '2300'
       run: |
         now_hour=$(date +'%H')
-        echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         if [ $now_hour -ge 15 ] && [ $now_hour -lt 18 ]; then
           echo "base_time=2300" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 18 ] && [ $now_hour -lt 21 ]; then
           echo "base_time=0200" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 21 ] && [ $now_hour -lt 0 ]; then
           echo "base_time=0500" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 0 ] && [ $now_hour -lt 3 ]; then
           echo "base_time=0800" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 3 ] && [ $now_hour -lt 6 ]; then
           echo "base_time=1100" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 6 ] && [ $now_hour -lt 9 ]; then
           echo "base_time=1400" >> $GITHUB_ENV
+          echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 9 ] && [ $now_hour -lt 12 ]; then
           echo "base_time=1700" >> $GITHUB_ENV
           echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
         elif [ $now_hour -ge 12 ] && [ $now_hour -lt 15 ]; then
           echo "base_time=2000" >> $GITHUB_ENV
           echo "base_date=$(date +'%Y%m%d')" >> $GITHUB_ENV
+          YESTERDAY=$(date -d "yesterday" +'%Y-%m-%d')
+          echo "Yesterday's Date: $YESTERDAY"
         else
           echo "No parameters specified for the current time ($now_hour)"
           exit 1
@@ -63,7 +70,6 @@ jobs:
         PARAM5: ${{ env.base_time }}
         PARAM6: ${{ env.nx }}
         PARAM7: ${{ env.ny }}
-        PARAM8: ${{ env.CURRENT_DATE }}
       run: |
         # 시크릿 값과 환경 변수로 설정된 파라미터를 사용하여 URL에서 JSON 데이터를 가져오고 출력 파일에 저장
         curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=$OPEN_API_KEY&numOfRows=$PARAM1&dataType=$PARAM2&pageNo=$PARAM3&base_date=$PARAM4&base_time=$PARAM5&nx=$PARAM6&ny=$PARAM7"
