@@ -106,8 +106,10 @@ jobs:
         ls -al
         git add docs/data.json
         git diff
-        git config --global user.email "siook1239@gmail.com"
-        git config --global user.name "maker-ryu"
+        # git config --global user.email "siook1239@gmail.com"
+        # git config --global user.name "maker-ryu"
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "github-actions"
         git commit -m "Update JSON data"
         git push
 
