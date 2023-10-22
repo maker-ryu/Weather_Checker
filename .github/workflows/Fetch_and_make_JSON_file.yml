@@ -101,8 +101,8 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
+        git config --global user.email "siook1239@gmail.com"
+        git config --global user.name "maker-ryu"
         git add .
         git commit -m "Update JSON data"
         git push
