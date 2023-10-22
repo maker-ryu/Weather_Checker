@@ -90,15 +90,17 @@ jobs:
         mkdir -p docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json docs/response.json
+        git ls -al
         echo "JSON file generated and saved to docs directory."
 
-    - name: Add date and push
-      run: |
-        git add docs/response.json
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
-        git commit -m "Update JSON data"
-        git push
+    # - name: Add date and push
+    #   run: |
+    #     git add .
+    #     git diff
+    #     git config --global user.email "github-actions@github.com"
+    #     git config --global user.name "github-actions"
+    #     git commit -m "Update JSON data"
+    #     git push
 
     # - name: Commit and Push Changes
     #   run: |
