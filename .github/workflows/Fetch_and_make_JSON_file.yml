@@ -94,29 +94,43 @@ jobs:
 
     - name: 업데이트 로그 남기기
       run: |
-        current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
-        echo "$current_datetime" >> Weather_Checker/docs/update_log.txt
+        # 현재 UTC 얻기
+        utc_datatime=$(date +"%Y-%m-%d %H:%M:%S")
+        # 서울 시간 : UTC + 9
+        seoul_datatime=$(date -d "$utc_time + 9 hours" +"%Y-%m-%d %H:%M:%S")
+        # update_log.txt에 로그 저장
+        echo "$seoul_datatime" >> Weather_Checker/docs/update_log.txt
     
-    - name: 디렉토리 파일 확인
-      run: |
-        cd Weather_Checker
-        ls -al
-        cd docs
-        ls -al
-        cat data.json
-        cat update_log.txt
+    # - name: 디렉토리 파일 확인
+    #   run: |
+    #     cd Weather_Checker
+    #     ls -al
+    #     cd docs
+    #     ls -al
+    #     cat data.json
+    #     cat update_log.txt
 
     - name: Commit and Push Changes
       run: |
         cd Weather_Checker
-        ls -al
         git add docs/data.json
         git add docs/update_log.txt
-        git diff
         git config --global user.email "siook1239@gmail.com"
         git config --global user.name "maker-ryu"
         git commit -m "Update JSON data"
         git push
+
+    # - name: Commit and Push Changes
+    #   run: |
+    #     cd Weather_Checker
+    #     ls -al
+    #     git add docs/data.json
+    #     git add docs/update_log.txt
+    #     git diff
+    #     git config --global user.email "siook1239@gmail.com"
+    #     git config --global user.name "maker-ryu"
+    #     git commit -m "Update JSON data"
+    #     git push
 
     # - name: Commit and Push Changes
     #   run: |
