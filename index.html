@@ -1,40 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Read JSON with JavaScript</title>
+    <title>Today Weather</title>
 </head>
 <body>
     <h1>JSON Data</h1>
-    <div id="json-data"></div>
-    <div id="json-data1"></div>
 
-    <script>
-        // JSON 파일의 경로
-        const jsonFilePath = "docs/data.json";
+    <script src="script.js"></script>
 
-        // JSON 데이터를 가져오는 함수
-        function fetchJSONFile(filePath, callback) {
-            fetch(filePath)
-                .then(response => response.json())
-                .then(data => {
-                    callback(data);
-                })
-                .catch(error => {
-                    console.error("Error loading JSON data:", error);
-                });
-        }
+    <div id="forecast-results"></div>
+    <!-- <div id="json-data1"></div> -->
 
-        // JSON 파일 가져와서 화면에 출력
-        fetchJSONFile(jsonFilePath, function(data) {
-            const jsonData = JSON.stringify(data, null, 2);
-            const json_parse = JSON.parse(jsonData);
-            //document.getElementById("json-data").textContent = jsonData;
-            document.getElementById("json-data").textContent = json_parse.response.body.items.item[0].baseDate;
-            document.getElementById("json-data1").textContent = json_parse.response.body.items.item[0].baseTime;
-
-            // document.getElementById("json-data").textContent = jsonData;
-        });
-
-    </script>
 </body>
 </html>
