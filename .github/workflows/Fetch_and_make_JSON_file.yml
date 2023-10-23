@@ -91,25 +91,27 @@ jobs:
         mkdir -p Weather_Checker/docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json Weather_Checker/docs/data.json
+
+    - name: 업데이트 로그 남기기
+      run: |
         current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
-        echo "$current_datetime" > Weather_Checker/docs/current_datetime.txt
-        echo "JSON file generated and saved to Weather_Checker/docs directory."
+        echo "$current_datetime" >> Weather_Checker/docs/update_log.txt
     
-    - name: 디렉토리 JSON파일 확인
+    - name: 디렉토리 파일 확인
       run: |
         cd Weather_Checker
         ls -al
         cd docs
         ls -al
         cat data.json
-        cat current_datetime.txt
+        cat update_log.txt
 
     - name: Commit and Push Changes
       run: |
         cd Weather_Checker
         ls -al
         git add docs/data.json
-        git add docs/current_datetime.txt
+        git add docs/update_log.txt
         git diff
         git config --global user.email "siook1239@gmail.com"
         git config --global user.name "maker-ryu"
