@@ -1,6 +1,4 @@
-// JSON 파일의 경로
-const jsonFilePath = "docs/data.json";
-
+const jsonFilePath = "docs/data.json"; // JSON 파일의 경로
 const time = [] // 예보시각
 const tmp = [] // 온도
 const pop = [] // 강수확률
@@ -34,12 +32,12 @@ fetchJSONFile(jsonFilePath, function(data) {
     const jsonData = JSON.stringify(data, null, 2);
     const json_parse = JSON.parse(jsonData);
     const item = json_parse.response.body.items.item;
-
+    
     for (let i = 0; i < 144; i++) {
         const category = item[i].category;
         const fcstTime = item[i].fcstTime;
         const fcstValue = item[i].fcstValue;
-    
+        
         if (category === 'TMP') {
             time.push(fcstTime);
             tmp.push(fcstValue);
@@ -47,12 +45,6 @@ fetchJSONFile(jsonFilePath, function(data) {
             pop.push(fcstValue);
         }
     }
-
+    
     displayForecast();
-
-    // document.getElementById("json-data").textContent = jsonData;
-    // document.getElementById("json-data").textContent = json_parse.response.body.items.item[0].baseDate;
-    // document.getElementById("json-data1").textContent = json_parse.response.body.items.item[0].baseTime;
-
-    // document.getElementById("json-data").textContent = jsonData;
 });
