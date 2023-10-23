@@ -17,6 +17,18 @@ function fetchJSONFile(filePath, callback) {
         });
 }
 
+function displayForecast() {
+    const forecastResults = document.getElementById("forecast-results");
+
+    forecastResults.innerHTML += '==================' + '<br>';
+    forecastResults.innerHTML += '시간 | 기온 | 강수확률' + '<br>';
+    forecastResults.innerHTML += '==================' + '<br>';
+    for (let i = 0; i < 12; i++) {
+        const result = time[i][0] + time[i][1] + '시 | ' + tmp[i] + '도 | ' + pop[i] + '%';
+        forecastResults.innerHTML += result + '<br>';
+    }
+}
+
 // JSON 파일 parse해서 배열에 저장
 fetchJSONFile(jsonFilePath, function(data) {
     const jsonData = JSON.stringify(data, null, 2);
@@ -36,15 +48,7 @@ fetchJSONFile(jsonFilePath, function(data) {
         }
     }
 
-    const forecastResults = document.getElementById("forecast-results");
-
-    forecastResults.innerHTML += '==================' + '<br>';
-    forecastResults.innerHTML += '시간 | 기온 | 강수확률' + '<br>';
-    forecastResults.innerHTML += '==================' + '<br>';
-    for (let i = 0; i < 12; i++) {
-        const result = time[i][0] + time[i][1] + '시 | ' + tmp[i] + '도 | ' + pop[i] + '%';
-        forecastResults.innerHTML += result + '<br>';
-    }
+    displayForecast();
 
     // document.getElementById("json-data").textContent = jsonData;
     // document.getElementById("json-data").textContent = json_parse.response.body.items.item[0].baseDate;
