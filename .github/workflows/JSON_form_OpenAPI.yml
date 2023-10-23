@@ -1,4 +1,4 @@
-name: Fetch and make JSON file
+name: Get Weahter Information form OpenAPI and make JSON data
 
 # on:
 #   push:
@@ -69,7 +69,7 @@ jobs:
         echo "nx=61" >> $GITHUB_ENV
         echo "ny=126" >> $GITHUB_ENV
 
-    - name: Fetch JSON from URL
+    - name: OpenAPI를 통해 기상 정보 JSON데이터 받기
       env:
         OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
         PARAM1: ${{ env.numOfRows }}
@@ -83,16 +83,14 @@ jobs:
         # 시크릿 값과 환경 변수로 설정된 파라미터를 사용하여 URL에서 JSON 데이터를 가져오고 출력 파일에 저장
         curl -s -o response.json "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=$OPEN_API_KEY&numOfRows=$PARAM1&dataType=$PARAM2&pageNo=$PARAM3&base_date=$PARAM4&base_time=$PARAM5&nx=$PARAM6&ny=$PARAM7"
 
-    - name: JSON 파일 로컬에 저장
+    - name: JSON 파일을 로컬에 저장
       run: |
-        # JSON 파일 내용을 표시
-        cat response.json
         # 디렉토리 생성 또는 이미 존재하면 스킵
         mkdir -p Weather_Checker/docs
         # JSON 파일을 docs 디렉토리로 이동 (덮어쓰기)
         mv response.json Weather_Checker/docs/data.json
 
-    - name: 업데이트 로그 남기기
+    - name: 실행 로그 로컬에 남기기
       run: |
         # 현재 UTC 얻기
         utc_datatime=$(date +"%Y-%m-%d %H:%M:%S")
@@ -101,16 +99,18 @@ jobs:
         # update_log.txt에 로그 저장
         echo "$seoul_datatime" >> Weather_Checker/docs/update_log.txt
     
-    # - name: 디렉토리 파일 확인
-    #   run: |
-    #     cd Weather_Checker
-    #     ls -al
-    #     cd docs
-    #     ls -al
-    #     cat data.json
-    #     cat update_log.txt
+    - name: 디렉토리 파일 확인
+      run: |
+        cd Weather_Checker
+        ls -al
+        cd docs
+        ls -al
+        echo "업데이트 로그(update_log.txt)"
+        cat update_log.txt
+        echo "최신화 JSON 데이터 파일(data.json)"
+        cat data.json
 
-    - name: Commit and Push Changes
+    - name: 변경사항 Commit & Push
       run: |
         cd Weather_Checker
         git add docs/data.json
