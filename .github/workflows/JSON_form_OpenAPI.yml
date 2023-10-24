@@ -89,7 +89,7 @@ jobs:
         # 현재 UTC 얻기
         utc_datatime=$(date +"%Y-%m-%d %H:%M:%S")
         # 서울 시간 : UTC + 9
-        seoul_datatime=$(date -d "$utc_time + 9 hours" +"%Y-%m-%d %H:%M:%S")
+        seoul_datatime=$(date -d "$utc_datatime + 9 hours" +"%Y년%m월%d %H:%M:%S")
         # update_log.txt에 로그 저장
         echo "$seoul_datatime" >> Weather_Checker/docs/update_log.txt
         # 최신화 날짜 json에 저장
