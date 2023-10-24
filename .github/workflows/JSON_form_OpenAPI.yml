@@ -92,8 +92,8 @@ jobs:
         seoul_datatime=$(date -d "$utc_datatime + 9 hours" +"%Y년%m월%d %H:%M:%S")
         # update_log.txt에 로그 저장
         echo "$seoul_datatime" >> Weather_Checker/docs/update_log.txt
-        # 최신화 날짜 json에 저장
-        echo "{\"timestamp\":\"$seoul_datatime\"}" >> Weather_Checker/docs/timestamp.json
+        # 최신화 날짜 timestamp.json에 덮어쓰기
+        echo "{\"timestamp\":\"$seoul_datatime\"}" > Weather_Checker/docs/timestamp.json
     
     - name: 디렉토리 로컬 파일 확인
       run: |
