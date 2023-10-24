@@ -2,7 +2,6 @@ const jsonFilePath = "docs/data.json"; // JSON 파일의 경로
 const time = [] // 예보시각
 const tmp = [] // 온도
 const pop = [] // 강수확률
-const update_time = null; // 최신화 날짜
 
 // JSON 데이터를 가져오는 함수
 function fetchJSONFile(filePath, callback) {
@@ -60,3 +59,8 @@ fetchJSONFile("docs/timestamp.json", function(data) {
 
     updateTime.innerHTML += '[데이터 최신화 : ' + json_parse.timestamp + ']';
 });
+
+if (localStorage.getItem('visitedOnce') !== 'true') {
+    window.location.reload(true); // 캐시 비우고 하드 리로드
+    localStorage.setItem('visitedOnce', 'true');  // 페이지 방문 표시 저장
+}
