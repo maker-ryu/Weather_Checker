@@ -106,7 +106,7 @@ jobs:
         # 서울 시간 : UTC + 9
         seoul_datatime=$(date -d "$utc_time + 9 hours" +"%Y-%m-%d %H:%M:%S")
         # JSON파일에 업데이트
-        echo '{"update_datetime": "'"$seoul_datatime"'"}' >> Weather_Checker/docs/update_log.json
+        # echo '{"update_datetime": "'"$seoul_datatime"'"}' >> Weather_Checker/docs/update_log.json
         
     - name: 디렉토리 파일 확인
       run: |
