@@ -60,7 +60,21 @@ fetchJSONFile("docs/timestamp.json", function(data) {
     updateTime.innerHTML += '[데이터 최신화 : ' + json_parse.timestamp + ']';
 });
 
-if (localStorage.getItem('visitedOnce') !== 'true') {
-    window.location.reload(true); // 캐시 비우고 하드 리로드
-    localStorage.setItem('visitedOnce', 'true');  // 페이지 방문 표시 저장
+// 페이지가 로드될 때 실행할 함수
+function clearCacheAndReload() {
+    // 캐시 비우기
+    if ('caches' in window) {
+        caches.keys().then(function(cacheNames) {
+        cacheNames.forEach(function(cacheName) {
+            caches.delete(cacheName);
+        });
+        });
+    }
+
+    // 하드 리로드 (캐시를 사용하지 않고 다시 불러오기)
+    window.location.reload(true);
 }
+  
+// 페이지를 방문할 때 clearCacheAndReload 함수 실행
+window.addEventListener('load', clearCacheAndReload);
+  
