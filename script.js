@@ -61,7 +61,7 @@ fetchJSONFile("docs/timestamp.json", function(data) {
 
     // 첫 방문시, 재 방문시 '최신화 시간'이 기존과 다를경우
     if (localStorage.getItem('visitTime') !== json_parse.timestamp) {
-        window.location.reload(true); // 캐시 비우고 하드 리로드
         localStorage.setItem('visitTime', json_parse.timestamp);  // 페이지 '최신화 시간' 저장
+        window.location.reload(true); // 캐시 비우고 하드 리로드
     }
 });
