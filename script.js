@@ -58,5 +58,5 @@ fetchJSONFile("docs/timestamp.json", function(data) {
     const jsonData = JSON.stringify(data, null, 2);
     const json_parse = JSON.parse(jsonData);
 
-    updateTime.innerHTML += '[최신화 시간 : ' + json_parse.timestamp + ']';
+    updateTime.innerHTML += '[데이터 최신화 : ' + json_parse.timestamp + ']';
 });
