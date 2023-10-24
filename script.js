@@ -58,10 +58,17 @@ fetchJSONFile("docs/timestamp.json", function(data) {
     const json_parse = JSON.parse(jsonData);
 
     updateTime.innerHTML += '[데이터 최신화 : ' + json_parse.timestamp + ']';
+    console.log(json_parse.timestamp);
 
-    // 첫 방문시, 재 방문시 '최신화 시간'이 기존과 다를경우
-    if (localStorage.getItem('visitTime') !== json_parse.timestamp) {
-        localStorage.setItem('visitTime', json_parse.timestamp);  // 페이지 '최신화 시간' 저장
+    // 세션 스토리지에 'hasVisited' 키가 없으면 코드를 실행
+    if (!sessionStorage.getItem('hasVisited')) {
         window.location.reload(true); // 캐시 비우고 하드 리로드
+        sessionStorage.setItem('hasVisited', 'true'); // 세션 스토리지에 'hasVisited' 키 저장
     }
+
+    // // 첫 방문시, 재 방문시 '최신화 시간'이 기존과 다를경우
+    // if (localStorage.getItem('visitTime') !== json_parse.timestamp) {
+    //     localStorage.setItem('visitTime', json_parse.timestamp);  // 페이지 '최신화 시간' 저장
+    //     window.location.reload(true); // 캐시 비우고 하드 리로드
+    // }
 });
