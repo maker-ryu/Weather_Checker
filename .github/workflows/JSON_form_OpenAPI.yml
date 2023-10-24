@@ -98,6 +98,8 @@ jobs:
         seoul_datatime=$(date -d "$utc_time + 9 hours" +"%Y-%m-%d %H:%M:%S")
         # update_log.txt에 로그 저장
         echo "$seoul_datatime" >> Weather_Checker/docs/update_log.txt
+        # 최신화 날짜 json에 저장
+        echo "{\"timestamp\":\"$seoul_datatime\"}" >> Weather_Checker/docs/timestamp.json
     
     - name: 디렉토리 파일 확인
       run: |
@@ -105,6 +107,8 @@ jobs:
         ls -al
         cd docs
         ls -al
+        echo "최신화 날짜(timestamp.json)"
+        cat timestamp.json
         echo "업데이트 로그(update_log.txt)"
         cat update_log.txt
         echo "최신화 JSON 데이터 파일(data.json)"
@@ -113,11 +117,12 @@ jobs:
     - name: 변경사항 Commit & Push
       run: |
         cd Weather_Checker
-        git add docs/data.json
+        git add docs/timestamp.json
         git add docs/update_log.txt
+        git add docs/data.json
         git config --global user.email "siook1239@gmail.com"
         git config --global user.name "maker-ryu"
-        git commit -m "Update JSON data"
+        git commit -m "Update weather JSON data"
         git push
 
     # - name: Commit and Push Changes
