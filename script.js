@@ -59,17 +59,4 @@ fetchJSONFile("docs/timestamp.json", function(data) {
     const timestamp = json_parse.timestamp;
 
     updateTime.innerHTML += '[데이터 최신화 : ' + timestamp + ']';
-    console.log(timestamp);
-
-    // // 세션 스토리지에 'hasVisited' 키가 없으면 코드를 실행
-    // if (!sessionStorage.getItem('hasVisited')) {
-    //     window.location.reload(true); // 캐시 비우고 하드 리로드
-    //     sessionStorage.setItem('hasVisited', 'true'); // 세션 스토리지에 'hasVisited' 키 저장
-    // }
-
-    // // 첫 방문시, 재 방문시 '최신화 시간'이 기존과 다를경우
-    // if (sessionStorage.getItem('visitTime') !== timestamp || sessionStorage.getItem('visitTime') == null) {
-    //     sessionStorage.setItem('visitTime', timestamp);  // 페이지 '최신화 시간' 저장
-    //     window.location.reload(true); // 캐시 비우고 하드 리로드
-    // }
 });
