@@ -78,7 +78,7 @@ function displayForecast() {
     for (let i = 0; i < time.length; i++) {
         var result = '';
         result += '<div class="card">\n';
-        result += '\t<p>' + time[i][0] + time[i][1] + '시' + '</p>\n';
+        result += '\t<p style="font-size: 64px;">' + time[i][0] + time[i][1] + '시' + '</p>\n';
         result += '\t<p>' + tmp[i] + '°' + '</p>\n';
         result += '\t<p>' + pop[i] + '%' + '</p>\n';
         result += '</div>\n'
