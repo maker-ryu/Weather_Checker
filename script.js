@@ -24,7 +24,7 @@ function displayClothes() {
     var tmp_ave = tmp_sum / tmp.length;
 
     if (tmp_ave <= 4) {
-        document.getElementById("clothes-img").src = "images/_4.png";
+        document.getElementById("clothes-img").src = "images/4.png";
         document.getElementById("clothes-text").innerHTML = "패딩, 두꺼운 코트, 누빔 옷, 기모, 목도리";
     } else if (tmp_ave > 4 && tmp_ave <= 8) {
         document.getElementById("clothes-img").src = "images/5_8.png";
