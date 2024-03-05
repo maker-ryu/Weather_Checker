@@ -1,7 +1,7 @@
-<OpenAPI_ServiceResponse>
-	<cmmMsgHeader>
-		<errMsg>SERVICE ERROR</errMsg>
-		<returnAuthMsg>HTTP ROUTING ERROR</returnAuthMsg>
-		<returnReasonCode>04</returnReasonCode>
-	</cmmMsgHeader>
-</OpenAPI_ServiceResponse>
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML><HEAD>
+<TITLE> 307 Temporary Redirect </TITLE>
+</HEAD><BODY>
+<H1>Temporary Redirect</H1>
+<HR>
+</BODY></HTML>
