@@ -1,2 +1,1 @@
-Error forwarding request to backend server: Get "http://newsky3.kma.go.kr/openAPI/VilageFcstInfoService_2.0/getVilageFcst?SG_APIM=2ug8Dm9qNBfD32JLZGPN64f3EoTlkpD8kSOHWfXpyrY&base_date=20251002&base_time=0500&dataType=JSON&numOfRows=144&nx=61&ny=126&pageNo=1&serviceKey=C62uZ9l4K3IYgXl9YPWVgQE1Z1nvPu9EPZzRB0j3UxoAFFUSp7VWSOX5UHBbOgWm0zTEaBQSF1sQu6QloXWJ3g%3D%3D": EOF
-
+Error forwarding request to backend server
