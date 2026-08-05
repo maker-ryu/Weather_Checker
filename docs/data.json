@@ -1,1 +1,9 @@
-Unauthorized
+{
+  "OpenAPI_ServiceResponse": {
+    "cmmMsgHeader": {
+      "errMsg": "DEADLINE_HAS_EXPIRED_ERROR",
+      "returnAuthMsg": "기한 만료된 서비스키",
+      "returnReasonCode": "31"
+    }
+  }
+}
